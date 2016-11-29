@@ -35,15 +35,23 @@ router.put('/:id', function(req,res) {
 			//console.log(candies[i]);
 			candies[i].name = req.body.name;
 			candies[i].color = req.body.color;
-
 			res.json(candies[i]);
 		}
 	}	
 	res.json(candies);
 });
 router.delete('/:id', function(req,res) {
-	res.json(candies.pop());
+		var cur = req.params.id;
+	var edi;
+	for (var i = 0; i<candies.length;i++){
+		if (candies[i].id == cur){
+			candies.splice(i,1);
+			res.json(candies);
+		}
+	}	
+	
 });
+
 // Fill out the rest of the routes here
 
 module.exports = router;
